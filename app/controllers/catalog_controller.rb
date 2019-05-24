@@ -82,7 +82,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_ssim', label: 'Language', limit: true
-    config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
+    #config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
     config.add_facet_field 'subject_geo_ssim', label: 'Region'
     config.add_facet_field 'subject_era_ssim', label: 'Era'
 
@@ -110,7 +110,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'language_ssim', label: 'Language'
     config.add_index_field 'published_ssim', label: 'Published'
     config.add_index_field 'published_vern_ssim', label: 'Published'
-    config.add_index_field 'lc_callnum_ssim', label: 'Call number'
+    #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -126,7 +126,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'published_ssim', label: 'Published'
     config.add_show_field 'published_vern_ssim', label: 'Published'
-    config.add_show_field 'lc_callnum_ssim', label: 'Call number'
+    #config.add_show_field 'lc_callnum_ssim', label: 'Call number'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
 
     # "fielded" search configuration. Used by pulldown among other places.
