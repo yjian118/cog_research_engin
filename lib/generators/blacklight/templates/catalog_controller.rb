@@ -1,9 +1,7 @@
 # frozen_string_literal: true
-class CatalogController < ApplicationController
+class <%= controller_name.classify %>Controller < ApplicationController
 
   include Blacklight::Catalog
-  include Blacklight::Marc::Catalog
-
 
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
@@ -42,9 +40,9 @@ class CatalogController < ApplicationController
     config.add_results_collection_tool(:view_type_group)
 
     config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
-    #config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
-    #config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
-    #config.add_show_tools_partial(:citation)
+    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
+    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
+    config.add_show_tools_partial(:citation)
 
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
@@ -82,14 +80,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_ssim', label: 'Language', limit: true
-    #config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
+    config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
     config.add_facet_field 'subject_geo_ssim', label: 'Region'
     config.add_facet_field 'subject_era_ssim', label: 'Era'
-    #config.add_facet_field 'Author', query: {
-    #   a_to_n: { label: 'A-N', fq: 'author_tsim:[A* TO N*]' }
-    #  m_to_z: { label: 'M-Z', fq: 'author_tsim:[M* TO Z*]' }
-    #}
-    config.add_facet_field 'author_tsim', label: 'Author', limit:true, index_range: 'A'..'Z'
+
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_ssim']
 
     config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
@@ -114,8 +108,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'language_ssim', label: 'Language'
     config.add_index_field 'published_ssim', label: 'Published'
     config.add_index_field 'published_vern_ssim', label: 'Published'
-    #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_index_field 'url_fulltext_ssim', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_index_field 'lc_callnum_ssim', label: 'Call number'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -126,12 +119,12 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_tsim', label: 'Author'
     config.add_show_field 'author_vern_ssim', label: 'Author'
     config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'url_fulltext_ssim', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_show_field 'url_fulltext_ssim', label: 'URL'
     config.add_show_field 'url_suppl_ssim', label: 'More Information'
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'published_ssim', label: 'Published'
     config.add_show_field 'published_vern_ssim', label: 'Published'
-    #config.add_show_field 'lc_callnum_ssim', label: 'Call number'
+    config.add_show_field 'lc_callnum_ssim', label: 'Call number'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
 
     # "fielded" search configuration. Used by pulldown among other places.
