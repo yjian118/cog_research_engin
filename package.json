@@ -1,5 +1,15 @@
 {
-  "name": "my_new_blacklightapp",
-  "private": true,
-  "dependencies": {}
+    "name": "my_new_blacklightapp",
+    "private": true,
+    "dependencies": {
+        "@rails/webpacker": "^4.0.4",
+        "blacklight-frontend": "https://github.com/projectblacklight/blacklight#c435caddf14af6aa36c1428995b8cc52d76d4bf2",
+        "caniuse-lite": "^1.0.30000697",
+        "popper.js": "^1.14.3",
+        "twitter-typeahead-rails": "https://github.com/yourabi/twitter-typeahead-rails.git#v0.11.1.pre.corejavascript"
+    },
+    "devDependencies": {
+        "webpack": "^4.0",
+        "webpack-dev-server": "^3.4.1"
+    }
 }
