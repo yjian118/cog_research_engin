@@ -33,7 +33,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'title_tsim'
     #config.index.display_type_field = 'format'
-    #config.index.thumbnail_field = 'thumbnail_path_ss'
+    #config.index.thumbnail_field = :render_thumbnail
 
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
@@ -112,10 +112,12 @@ class CatalogController < ApplicationController
     config.add_index_field 'author_vern_ssim', label: 'Author'
     config.add_index_field 'format', label: 'Format'
     config.add_index_field 'language_ssim', label: 'Language'
+    config.add_index_field 'url_fulltext_ssim', label: 'URL'
+    config.add_index_field 'url_suppl_ssim', label: 'More Information'
     config.add_index_field 'published_ssim', label: 'Published'
     config.add_index_field 'published_vern_ssim', label: 'Published'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_index_field 'url_fulltext_ssim', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_index_field 'isbn_ssim', helper_method: :link_to_external_lookup, label: 'ISBN'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -126,13 +128,13 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_tsim', label: 'Author'
     config.add_show_field 'author_vern_ssim', label: 'Author'
     config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'url_fulltext_ssim', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_show_field 'url_fulltext_ssim', label: 'URL'
     config.add_show_field 'url_suppl_ssim', label: 'More Information'
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'published_ssim', label: 'Published'
     config.add_show_field 'published_vern_ssim', label: 'Published'
     #config.add_show_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'isbn_ssim', helper_method: :link_to_external_lookup, label: 'ISBN'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
