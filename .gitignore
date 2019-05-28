@@ -31,3 +31,4 @@
 /config/master.key
 projects/*
 withMarc/*
+!withMarc/server/solr/cogniva-core/*
