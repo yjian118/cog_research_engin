@@ -19,7 +19,7 @@ module Blacklight
     end
 
     ##
-    # Classes used for sizing the main content of a Blacklight page
+    # Classes used for sizing the main content of a Blacklight page, the main body of the documents
     # @return [String]
     def main_content_classes
       'col-md-9'
