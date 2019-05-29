@@ -34,7 +34,7 @@ class CatalogController < ApplicationController
     config.index.title_field = 'title_tsim'
     #config.index.display_type_field = 'format'
     #config.index.thumbnail_field = 'thumbnail_path_ss'
-
+    #bookmark_control may probablely control the behavior of add books to the shopping cart
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)

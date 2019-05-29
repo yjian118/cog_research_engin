@@ -1,3 +1,4 @@
+# The hardcoded name, Eng version
 en:
   views:
     pagination:
@@ -172,7 +173,7 @@ en:
       documents:
         counter: '%{counter}. '
       facets:
-        title: 'Limit your search'
+        title: 'Facets'
         clear: 'Clear Filter'
         sort:
           count: 'Numerical Sort'
