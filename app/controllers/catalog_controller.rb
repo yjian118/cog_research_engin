@@ -85,11 +85,13 @@ class CatalogController < ApplicationController
     #config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
     config.add_facet_field 'subject_geo_ssim', label: 'Region'
     config.add_facet_field 'subject_era_ssim', label: 'Era'
+    config.add_facet_field 'author_tsim', label: 'Author'
     #config.add_facet_field 'Author', query: {
     #   a_to_n: { label: 'A-N', fq: 'author_tsim:[A* TO N*]' }
     #  m_to_z: { label: 'M-Z', fq: 'author_tsim:[M* TO Z*]' }
     #}
-    config.add_facet_field 'author_tsim', label: 'Author', limit:true, index_range: 'A'..'Z'
+    # The author should be capitalize in some where
+    # config.add_facet_field 'author_ssim', label: 'Author', limit:true, index_range: 'A'..'Z'
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_ssim']
 
     config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
