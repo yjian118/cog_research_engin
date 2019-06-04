@@ -1,3 +1,5 @@
+<%# The main layout components are laid in this file%>
+
 <% content_for(:content) do %>
   <% if content_for? :sidebar %>
     <section id="content" class="<%= main_content_classes %> ">
@@ -5,10 +7,6 @@
     </section>
 
     <section id="sidebar" class="<%= sidebar_classes %> order-first">
-      <%= content_for(:sidebar) %>
-    </section>
-
-    <section id="sidebar" class="<%= show_sidebar_classes %> order-last">
       <%= content_for(:sidebar) %>
     </section>
   <% else %>
