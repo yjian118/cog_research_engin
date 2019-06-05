@@ -13,8 +13,8 @@ class SolrDocument
                          :author => "author_ssm",
                          :language => "language_ssim",
                          :format => "format",
-                         :url => "url_fulltext_ssim",
-                         :published => "published_ssim"
+                         :url => "url_fulltext_ssm",
+                         :published => "pub_date_ssim"
                          )
 
 
