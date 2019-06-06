@@ -170,6 +170,7 @@ module Blacklight::BlacklightHelperBehavior
     field = options[:field]
 
     t(:'blacklight.search.show.label', label: document_show_field_label(document, field))
+    #document_show_field_label(document, field)
   end
 
   ##
