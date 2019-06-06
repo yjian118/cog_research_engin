@@ -119,7 +119,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'pub_date_ssim', label: 'Published Year'
     config.add_index_field 'isbn_tsim', label: 'ISBN'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_index_field 'url_fulltext_ssm', helper_method: :link_to_external_lookup, label: 'URL'
+    #config.add_index_field 'url_fulltext_ssm', helper_method: :link_to_external_lookup, label: 'URL'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -137,7 +137,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'pub_date_ssim', label: 'Published Year'
     #config.add_show_field 'lc_callnum_ssim', label: 'Call number'
     config.add_show_field 'isbn_tsim', label: 'ISBN'
-    config.add_show_field 'url_fulltext_ssm', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_show_field 'url_fulltext_ssm', label: 'URL'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
