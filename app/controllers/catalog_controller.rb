@@ -125,7 +125,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'position_ssim', label: 'Position'
     #config.add_index_field 'isbn_tsim', label: 'ISBN'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
-    #config.add_index_field 'url_fulltext_ssm', helper_method: :link_to_external_lookup, label: 'URL'
+    config.add_index_field 'url_fulltext_ssm', label: 'URL'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
