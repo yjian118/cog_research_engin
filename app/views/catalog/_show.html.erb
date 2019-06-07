@@ -3,7 +3,7 @@
 <dl class="row dl-invert document-metadata">
   <% doc_presenter.fields_to_render.each do |field_name, field| -%>
   <%#"URL" should be renamed as the show_field name in order to let it works%>  
-    <% unless field_name == "URL" %>
+    <% unless field_name == "url_fulltext_ssm" %>
       <dt class="blacklight-<%= field_name.parameterize %> col-md-3">
         <%= render_document_show_field_label document, field: field_name %>
       </dt>
@@ -15,7 +15,8 @@
         <%= render_document_show_field_label document, field: field_name %>
       </dt>
       <dd class="blacklight-<%= field_name.parameterize %> col-md-9">
-        <%= link_to "#{field}","#{field}" %>
+        <% field_value = doc_presenter.field_value field%>
+        <%= link_to field_value, field_value %>
       </dd>
     <% end %>    
   <% end -%>
