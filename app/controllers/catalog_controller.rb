@@ -79,7 +79,7 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'format', label: 'Format'
-    config.add_facet_field 'pub_date_ssim', label: 'Publication Date', single: true
+    config.add_facet_field 'pub_date_ssim', label: 'Publish Date', single: true
     config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_ssim', label: 'Language', limit: true
     #config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
@@ -97,7 +97,7 @@ class CatalogController < ApplicationController
     # config.add_facet_field 'author_ssim', label: 'Author', limit:true, index_range: 'A'..'Z'
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_ssim']
 
-    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
+    config.add_facet_field 'example_query_facet_field', label: 'Time Period', :query => {
        :years_5 => { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5 } TO *]" },
        :years_10 => { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10 } TO *]" },
        :years_25 => { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25 } TO *]" }
@@ -119,7 +119,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'language_ssim', label: 'Language'
     #config.add_index_field 'published_ssim', label: 'Published'
     #config.add_index_field 'published_vern_ssim', label: 'Published'
-    config.add_index_field 'pub_date_ssim', label: 'Published Date'
+    config.add_index_field 'pub_date_ssim', label: 'Publish Date'
     config.add_index_field 'department_ssim', label: 'Department'
     config.add_index_field 'role_ssim', label: 'Role'
     config.add_index_field 'position_ssim', label: 'Position'
@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_tsim', label: 'Title'
+    #config.add_show_field 'title_tsim', label: 'Title'
     #config.add_show_field 'title_vern_ssim', label: 'Title'
     #config.add_show_field 'subtitle_tsim', label: 'Subtitle'
     #config.add_show_field 'subtitle_vern_ssim', label: 'Subtitle'
@@ -140,7 +140,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'language_ssim', label: 'Language'
     #config.add_show_field 'published_ssim', label: 'Published'
     #config.add_show_field 'published_vern_ssim', label: 'Published'
-    config.add_show_field 'pub_date_ssim', label: 'Published Date'
+    config.add_show_field 'pub_date_ssim', label: 'Publish Date'
     #config.add_show_field 'lc_callnum_ssim', label: 'Call number'
     #config.add_show_field 'isbn_tsim', label: 'ISBN'
     config.add_show_field 'department_ssim', label: 'Department'
@@ -190,6 +190,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('department') do |field|
+      field.solr_parameters = {
+        'spellcheck.dictionary': 'department',
+        qf: '${department_qf}',
+        pf: '${department_pf}'
+      }
+    end
+
     # Specifying a :qt only to show it's possible, and so our internal automated
     # tests can test it. In this case it's the same as
     # config[:default_solr_parameters][:qt], so isn't actually neccesary.
@@ -206,10 +214,13 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, pub_date_si desc, title_si asc', label: 'relevance'
-    config.add_sort_field 'pub_date_si desc, title_si asc', label: 'year'
-    config.add_sort_field 'author_si asc, title_si asc', label: 'author'
-    config.add_sort_field 'title_si asc, pub_date_si desc', label: 'title'
+    config.add_sort_field 'score desc, pub_date_ssim desc, title_si asc', label: 'relevance'
+    config.add_sort_field 'pub_date_ssim desc, title_si asc', label: 'year'
+    #as author is multivalued and cannot be copied to a signle value field, sort on multi-authors is not sensible.
+    #config.add_sort_field 'author_si asc, title_si asc', label: 'author'
+    config.add_sort_field 'title_si asc, pub_date_ssim desc', label: 'title'
+    config.add_sort_field 'department_ssim asc, title_si asc, pub_date_ssim desc', label: 'department'
+
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
