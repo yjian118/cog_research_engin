@@ -77,5 +77,6 @@ gem 'devise-guests', '~> 0.6'
 gem 'blacklight-marc', '>= 7.0.0.rc1', '< 8'
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
-gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-bundler', 
+gem 'capistrano3-puma'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
