@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-server 'cogniva', port: 22, roles: [:web, :app, :db], primary: true
+server '127.0.0.1', port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, "cog_research_engin"
 set :repo_url, "git@github.com:yjian118/cog_research_engin.git"
@@ -43,8 +43,8 @@ set :puma_workers,    0
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :deploy_to, "$HOME/deploy/#{fetch :application}"
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+#set :deploy_to, "$HOME/deploy/#{fetch :application}"
+#append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
@@ -54,7 +54,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/deploy/#{fetch(:application)}"
+set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -97,17 +97,17 @@ namespace :puma do
       end
     end
   
-#   desc 'Restart application'
-#  task :restart do
-#      on roles(:app), in: :sequence, wait: 5 do
-#        invoke 'puma:restart'
-#      end
-#    end
+  desc 'Restart application'
+  task :restart do
+      on roles(:app), in: :sequence, wait: 5 do
+        invoke 'puma:restart'
+      end
+    end
   
     before :starting,     :check_revision
     after  :finishing,    :compile_assets
     after  :finishing,    :cleanup
-#    after  :finishing,    :restart
+    after  :finishing,    :restart
   end
   
   # ps aux | grep puma    # Get puma pid
