@@ -338,7 +338,8 @@ DEPENDENCIES
   bootstrap (~> 4.0)
   byebug
   capistrano (~> 3.11)
-  capistrano-passenger (~> 0.2.0)
+  capistrano-bundler
+  capistrano-passenger
   capistrano-rails (~> 1.4)
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   capybara (>= 2.15)
