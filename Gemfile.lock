@@ -315,10 +315,13 @@ DEPENDENCIES
   bootstrap (~> 4.0)
   byebug
 <<<<<<< HEAD
+<<<<<<< HEAD
   capistrano (~> 3.11)
   capistrano-passenger
   capistrano-rails (~> 1.4)
   capistrano-rbenv (~> 2.1, >= 2.1.4)
+=======
+>>>>>>> parent of 0c1f863... add some variables for deploy
 =======
 >>>>>>> parent of 0c1f863... add some variables for deploy
   capybara (>= 2.15)
