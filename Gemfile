@@ -74,6 +74,7 @@ gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+<<<<<<< HEAD
 gem 'blacklight-marc', '>= 7.0.0.rc1', '< 8'
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
@@ -81,3 +82,6 @@ gem 'capistrano-rails', '~> 1.4'
 #gem 'capistrano3-puma', '~> 1.2', '>= 1.2.1'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'capistrano-passenger'
+=======
+gem 'blacklight-marc', '>= 7.0.0.rc1', '< 8'
+>>>>>>> parent of 0c1f863... add some variables for deploy
