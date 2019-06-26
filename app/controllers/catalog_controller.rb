@@ -3,7 +3,10 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
-
+  
+  #def index 
+  #    @catalogs=Catalog.where(pro_type: params[:protype])
+  #end
 
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
@@ -21,6 +24,7 @@ class CatalogController < ApplicationController
     ## Default parameters to send to solr for all search-like requests. See also SearchBuilder#processed_parameters
     config.default_solr_params = {
       rows: 10
+      #q: 'format:book' 
     }
 
     # solr path which will be added to solr base url before the other solr params.
